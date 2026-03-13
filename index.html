@@ -85,7 +85,6 @@
     </script>
     
     <style>
-        /* … entire existing style block (kept exactly as provided) … */
         :root {
             --primary-color: #A0125A;
             --primary-light: #c93b84;
@@ -2422,6 +2421,98 @@ Our aim is to create a network of people and organisations right across the city
                     </div>
                     ${facebookSidebarHTML}
                 </div>
+                <!-- NEW SCROLLING PHOTO GALLERY ADDED BELOW (10 high-quality images) -->
+                <div style="margin-top: 50px; width: 100%;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 25px; text-align: center; position: relative;">
+                        <i class="fas fa-camera me-2"></i> Photo Gallery – Preston City of Sanctuary
+                    </h3>
+                    <div style="display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: thin; scrollbar-color: var(--primary-color) #f0f0f0;">
+                        <style>
+                            .gallery-thumbnail {
+                                flex: 0 0 auto;
+                                width: 280px;
+                                height: 180px;
+                                border-radius: 12px;
+                                overflow: hidden;
+                                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                                cursor: pointer;
+                            }
+                            .gallery-thumbnail:hover {
+                                transform: translateY(-5px) scale(1.02);
+                                box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+                            }
+                            .gallery-thumbnail img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                display: block;
+                            }
+                        </style>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+          
+<!-- Image 1: Community gathering -->
+<div class="gallery-thumbnail">
+    <a href="refugee-week-2023-3.webp" target="_blank">
+        <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+                        <!-- Image 2: Volunteers helping (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400" alt="Volunteers supporting refugees" loading="lazy">
+                            </a>
+                        </div>
+<!-- 55555555555555555555555555555555555555555555 -->
+            <!-- Image 3: Refugee Week -->
+
+           <div class="gallery-thumbnail">
+    <a href="refugee-week-2023-1.webp" target="_blank">
+        <img src="refugee-week-2023-1.webp" alt="Refugee Week 2023 at Preston Mela" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+
+
+           <!-- Image 4: Diverse family (Unsplash) -->
+
+           <div class="gallery-thumbnail">
+    <a href="diversity-4.webp" target="_blank">
+        <img src="diversity-4.webp" alt="Diverse family smiling" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+
+                        <!-- Image 5: Group of friends (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
+                            </a>
+                        </div>
+                        <!-- Image 6: Hands together (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
+                            </a>
+                        </div>
+
+                        <!-- Image 10: Park gathering (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #666;">
+                        <i class="fas fa-arrow-left me-2"></i> Scroll to see more photos  <i class="fas fa-arrow-right ms-2"></i><br>
+                        <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" style="color: var(--primary-color); font-weight: 600;">View more on our Facebook page →</a>
+                    </p>
+                </div>
             `,
             
             'experts-group': `
@@ -2816,9 +2907,11 @@ margin-top: -40px;
                                         <div style="flex: 1 1 200px; max-width: 250px;">
                                             <img src="refugee-week-2023-2.webp" alt="Refugee Week 2023 conversations" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                                         </div>
+
                                         <div style="flex: 1 1 200px; max-width: 250px;">
                                             <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                                         </div>
+
                                     </div>
                                     
                                     <p>If you are interested to see what was happening on stage at the Mela there is a <a href="https://photos.google.com/share/AF1QipNkH_5riMC-XrkMPkbEOxXu2kt89SBy_qfrQXbm6bBTciKCT-I4dNqeG8VpRkcDuw?key=d21jSmJ3UlQ0OVFScTVNQlQwdkktSGhoQ0dJemdn" target="_blank">full album of photos taken by Greg Smith here</a>.</p>
@@ -2991,14 +3084,6 @@ margin-top: -40px;
                     ${facebookSidebarHTML}
                 </div>
             `,
-
-
-
-
-
-
-
-
 
             // ============ COVID MEMORIES PAGE (Fully updated with new content) ============
             'Pandemic-Memories': `
