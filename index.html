@@ -1538,6 +1538,97 @@
             font-weight: 500;
             transition: background-color 0.3s ease;
         }
+
+        /* ===== LIGHTBOX STYLES (ADDED) ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary-light);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 15px;
+            user-select: none;
+            transition: 0.3s;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background-color: rgba(160, 18, 90, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-prev,
+            .lightbox-next {
+                font-size: 30px;
+                width: 50px;
+                height: 50px;
+            }
+            .lightbox-close {
+                font-size: 30px;
+                top: 10px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1723,6 +1814,14 @@
     <!-- Main Content Area -->
     <div class="container main-content-container" id="content-area">
         <!-- Content will be loaded dynamically here -->
+    </div>
+
+    <!-- Lightbox Overlay (ADDED) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev">&#10094;</span>
+        <span class="lightbox-next">&#10095;</span>
+        <img class="lightbox-image" src="" alt="Enlarged view">
     </div>
 
     <!-- Footer -->
@@ -2421,6 +2520,8 @@ Our aim is to create a network of people and organisations right across the city
                     </div>
                     ${facebookSidebarHTML}
                 </div>
+
+
                 <!-- NEW SCROLLING PHOTO GALLERY ADDED BELOW (10 high-quality images) -->
 
 
@@ -2514,11 +2615,13 @@ Our aim is to create a network of people and organisations right across the city
                             </a>
                         </div>
                     </div>
+
                     <p style="text-align: center; margin-top: 15px; color: #666;">
                         <i class="fas fa-arrow-left me-2"></i> Scroll to see more photos  <i class="fas fa-arrow-right ms-2"></i><br>
                         <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" style="color: var(--primary-color); font-weight: 600;">View more on our Facebook page →</a>
                     </p>
                 </div>
+
             `,
             
             'experts-group': `
@@ -4578,6 +4681,72 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         // Function to close search modal globally
         window.closeSearchModal = closeSearchModal;
 
+        // ============ LIGHTBOX FUNCTIONS (ADDED) ============
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('.lightbox-image');
+            lightboxImg.src = galleryImages[currentImageIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
+        }
+
+        function initGalleryLightbox() {
+            const thumbnails = document.querySelectorAll('.gallery-thumbnail a');
+            if (thumbnails.length === 0) return;
+
+            galleryImages = [];
+            thumbnails.forEach((a, index) => {
+                const href = a.getAttribute('href');
+                if (href) galleryImages.push(href);
+
+                // Remove default link behavior
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+            });
+        }
+
+        // Attach lightbox event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.querySelector('.lightbox-prev').addEventListener('click', prevImage);
+            lightbox.querySelector('.lightbox-next').addEventListener('click', nextImage);
+
+            // Close when clicking outside the image (on overlay)
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
+        });
+
         // ============ UPDATED LOAD CONTENT FUNCTION ============
         window.loadContent = function(section) {
             console.log('Loading content for:', section);
@@ -4608,6 +4777,11 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 setTimeout(() => {
                     loadFacebookFeed(); // this will find the container and fetch RSS
                 }, 100);
+
+                // Initialize gallery lightbox if we're on home page (or any page with gallery)
+                setTimeout(() => {
+                    initGalleryLightbox();
+                }, 200);
                 
                 updateActiveNavLink(section);
                 
@@ -4651,6 +4825,7 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 
                 // Load Facebook feed after content update
                 setTimeout(loadFacebookFeed, 100);
+                setTimeout(initGalleryLightbox, 200);
             }
         }
 
