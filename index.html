@@ -2761,10 +2761,6 @@ margin: 0px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid v
                                 <p><strong>Watch our <a href="${FACEBOOK_PAGE_URL}" target="_blank">Facebook page</a> for further details.</strong></p>
                             </div>
 
-
-
-
-
 <!-- Submit an Event Section -->
 <div style="
     margin-top: 30px;
@@ -2848,20 +2844,6 @@ margin: 0px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid v
     </a>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-                            
-
-
-
                             <!-- Follow us reminder -->
                             <div style="
                                 margin-top: 30px;
@@ -2913,42 +2895,6 @@ margin: 0px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid v
                     ${facebookSidebarHTML}
                 </div>
             `,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             // ============ PAST EVENTS PAGE ============
             'PastEvents': `
@@ -4681,9 +4627,24 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         // Function to close search modal globally
         window.closeSearchModal = closeSearchModal;
 
-        // ============ LIGHTBOX FUNCTIONS (ADDED) ============
+        // ============ LIGHTBOX FUNCTIONS (FIXED FOR CONTINUOUS SLIDESHOW) ============
         let currentImageIndex = 0;
         let galleryImages = [];
+        let slideshowInterval = null;
+
+        function startSlideshow(intervalMs = 2000) { // 1 second as requested
+            stopSlideshow();
+            slideshowInterval = setInterval(() => {
+                nextImage(true); // automatic – do NOT stop the slideshow
+            }, intervalMs);
+        }
+
+        function stopSlideshow() {
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                slideshowInterval = null;
+            }
+        }
 
         function openLightbox(index) {
             currentImageIndex = index;
@@ -4692,19 +4653,24 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             lightboxImg.src = galleryImages[currentImageIndex];
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            startSlideshow(); // start automatic cycling
         }
 
         function closeLightbox() {
+            stopSlideshow();
             document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        function prevImage() {
+        function prevImage(isAuto = false) {
+            if (!isAuto) stopSlideshow(); // manual navigation stops slideshow
             currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
             document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
         }
 
-        function nextImage() {
+        function nextImage(isAuto = false) {
+            if (!isAuto) stopSlideshow(); // manual navigation stops slideshow
             currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
             document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
         }
@@ -4730,8 +4696,12 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         document.addEventListener('DOMContentLoaded', function() {
             const lightbox = document.getElementById('lightbox');
             lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-            lightbox.querySelector('.lightbox-prev').addEventListener('click', prevImage);
-            lightbox.querySelector('.lightbox-next').addEventListener('click', nextImage);
+            lightbox.querySelector('.lightbox-prev').addEventListener('click', function() {
+                prevImage(false); // manual
+            });
+            lightbox.querySelector('.lightbox-next').addEventListener('click', function() {
+                nextImage(false); // manual
+            });
 
             // Close when clicking outside the image (on overlay)
             lightbox.addEventListener('click', function(e) {
@@ -4742,8 +4712,12 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             document.addEventListener('keydown', function(e) {
                 if (!lightbox.classList.contains('active')) return;
                 if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') prevImage();
-                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') {
+                    prevImage(false); // manual
+                }
+                if (e.key === 'ArrowRight') {
+                    nextImage(false); // manual
+                }
             });
         });
 
