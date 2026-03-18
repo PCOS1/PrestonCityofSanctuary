@@ -1,0 +1,70 @@
+در فایل پیوست بدون تغییر دادن بقیه کدها و با حداقل تغییر در کدها می خواهم
+در کد زیر را طوری اصلاح و کامل کن که
+وقتی روی عکسی کلیک می شود و آن عکس در سایز بزرگ دیده می شود بتوان در همان سایز و در همان حالت با رفتن به چپ یا راست بقیه عکسها را در همان سایز وحالت مشاهده کرد و نیازی به برگشتن به حالت اولیه نباشد
+بدون اینکه قسمت های غیرمرتبط با
+با کد زیر 
+تغییری داده شود
+و سپس
+نسخه نهایی و تکمیل شده
+فایل پیوست
+index-14-03-2026.html
+را تهیه کن و برای نوشتن توضیحات از زبان انگلیسی برای نوشتن استفاده کن
+
+
+
+
+<!-- Image 1: Community gathering -->
+<div class="gallery-thumbnail">
+    <a href="refugee-week-2023-3.webp" target="_blank">
+        <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+                        <!-- Image 2: Volunteers helping (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400" alt="Volunteers supporting refugees" loading="lazy">
+                            </a>
+                        </div>
+<!-- 55555555555555555555555555555555555555555555 -->
+            <!-- Image 3: Refugee Week -->
+
+           <div class="gallery-thumbnail">
+    <a href="refugee-week-2023-1.webp" target="_blank">
+        <img src="refugee-week-2023-1.webp" alt="Refugee Week 2023 at Preston Mela" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+
+
+           <!-- Image 4: Diverse family (Unsplash) -->
+
+           <div class="gallery-thumbnail">
+    <a href="diversity-4.webp" target="_blank">
+        <img src="diversity-4.webp" alt="Diverse family smiling" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+
+                        <!-- Image 5: Group of friends (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
+                            </a>
+                        </div>
+                        <!-- Image 6: Hands together (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
+                            </a>
+                        </div>
+
+                        <!-- Image 10: Park gathering (Unsplash) -->
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
+                            </a>
+                        </div>

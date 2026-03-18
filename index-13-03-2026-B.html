@@ -1538,138 +1538,6 @@
             font-weight: 500;
             transition: background-color 0.3s ease;
         }
-
-        /* ===== LIGHTBOX STYLES (ADDED) ===== */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1100;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-image {
-            max-width: 90%;
-            max-height: 80%;
-            object-fit: contain;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            line-height: 1;
-        }
-
-        .lightbox-close:hover {
-            color: var(--primary-light);
-        }
-
-        .lightbox-prev,
-        .lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 15px;
-            user-select: none;
-            transition: 0.3s;
-            background-color: rgba(0,0,0,0.3);
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-prev {
-            left: 20px;
-        }
-
-        .lightbox-next {
-            right: 20px;
-        }
-
-        .lightbox-prev:hover,
-        .lightbox-next:hover {
-            background-color: rgba(160, 18, 90, 0.8);
-        }
-
-        @media (max-width: 768px) {
-            .lightbox-prev,
-            .lightbox-next {
-                font-size: 30px;
-                width: 50px;
-                height: 50px;
-            }
-            .lightbox-close {
-                font-size: 30px;
-                top: 10px;
-                right: 20px;
-            }
-        }
-
-        /* ===== MARQUEE GALLERY STYLES (ADDED) ===== */
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .marquee-gallery {
-            display: flex;
-            animation: marquee 100s linear infinite;
-            gap: 20px;
-            padding: 20px 0;
-            width: max-content;
-        }
-
-        .marquee-gallery:hover {
-            animation-play-state: paused;
-        }
-
-        .gallery-thumbnail {
-            flex: 0 0 auto;
-            width: 450px;
-            height: 289px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery-thumbnail:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-        }
-
-        .gallery-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -1855,14 +1723,6 @@
     <!-- Main Content Area -->
     <div class="container main-content-container" id="content-area">
         <!-- Content will be loaded dynamically here -->
-    </div>
-
-    <!-- Lightbox Overlay (ADDED) -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <span class="lightbox-prev">&#10094;</span>
-        <span class="lightbox-next">&#10095;</span>
-        <img class="lightbox-image" src="" alt="Enlarged view">
     </div>
 
     <!-- Footer -->
@@ -2562,202 +2422,107 @@ Our aim is to create a network of people and organisations right across the city
                     ${facebookSidebarHTML}
                 </div>
 
-                <!-- NEW SCROLLING MARQUEE GALLERY (replaces the old static gallery) -->
-                <!-- To use your own images from https://photos.app.goo.gl/hMPQGNgV6Ewo1vUNA,
-                     replace the src and href attributes below with direct links to each photo.
-                     You can get direct links by clicking a photo in the album and copying the image URL. -->
-                <div style="margin-top: 1px; width: 100%; overflow: hidden;">
-                    <div class="marquee-gallery">
-                        <!-- First set of images (duplicated for seamless loop) -->
+
+                <!-- NEW SCROLLING PHOTO GALLERY ADDED BELOW (10 high-quality images) -->
 
 
+                <div style="margin-top: 1px; width: 100%;">
 
-    <!-- 44444444444444444444444444444444444444444444 -->
-                        <div class="gallery-thumbnail">
-                            <a href="refugee-week-2023-3.webp" target="_blank">
-                                <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="sanctuary1.jpg" target="_blank">
-                                <img src="sanctuary1.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-    <!-- 44444444444444444444444444444444444444444444 -->
-                        <div class="gallery-thumbnail">
-                            <a href="pic1.jpg" target="_blank">
-                                <img src="pic1.jpg" alt="smiling" loading="lazy">
-                            </a>
-                        </div>
+<!--
+<h3 style="color: var(--primary-color); margin-bottom: 25px; text-align: center; position: relative;">
+    <i class="fas fa-camera me-2"></i> Photo Gallery – Preston City of Sanctuary
+</h3>
+-->
 
-                        <div class="gallery-thumbnail">
-                            <a href="pic2.webp" target="_blank">
-                                <img src="pic2.webp" alt="Diverse" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic3.jpg" target="_blank">
-                                <img src="pic3.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic4.jpg" target="_blank">
-                                <img src="pic4.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic5.webp" target="_blank">
-                                <img src="pic5.webp" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic6.webp" target="_blank">
-                                <img src="pic6.webp" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic7.webp" target="_blank">
-                                <img src="pic7.webp" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic8.webp" target="_blank">
-                                <img src="pic8.webp" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic9.jpg" target="_blank">
-                                <img src="pic9.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic10.jpg" target="_blank">
-                                <img src="pic10.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic11.jpg" target="_blank">
-                                <img src="pic11.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="pic12.jpg" target="_blank">
-                                <img src="pic12.jpg" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
+                    <div style="display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: thin; scrollbar-color: var(--primary-color) #f0f0f0;">
+                        <style>
+                            .gallery-thumbnail {
+                                flex: 0 0 auto;
+                                width: 280px;
+                                height: 180px;
+                                border-radius: 12px;
+                                overflow: hidden;
+                                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                                cursor: pointer;
+                            }
+                            .gallery-thumbnail:hover {
+                                transform: translateY(-5px) scale(1.02);
+                                box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+                            }
+                            .gallery-thumbnail img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                display: block;
+                            }
+                        </style>
 
-                        <div class="gallery-thumbnail">
-                            <a href="png1.png" target="_blank">
-                                <img src="png1.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png2.png" target="_blank">
-                                <img src="png2.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png3.png" target="_blank">
-                                <img src="png3.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png4.png" target="_blank">
-                                <img src="png4.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png5.png" target="_blank">
-                                <img src="png5.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png6.png" target="_blank">
-                                <img src="png6.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png7.png" target="_blank">
-                                <img src="png7.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png8.png" target="_blank">
-                                <img src="png8.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png9.png" target="_blank">
-                                <img src="png9.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="png10.png" target="_blank">
-                                <img src="png10.png" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
+<!-- 55555555555555555555555555555555555555555555 -->
+          
+<!-- Image 1: Community gathering -->
+<div class="gallery-thumbnail">
+    <a href="refugee-week-2023-3.webp" target="_blank">
+        <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
 
-    <!-- 44444444444444444444444444444444444444444444 -->
-
-                        <div class="gallery-thumbnail">
-                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
-                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
-                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
-                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
-                            </a>
-                        </div>
-                        <!-- Duplicate set for seamless loop -->
-                        <div class="gallery-thumbnail">
-                            <a href="refugee-week-2023-3.webp" target="_blank">
-                                <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy">
-                            </a>
-                        </div>
+<!-- 55555555555555555555555555555555555555555555 -->
+                        <!-- Image 2: Volunteers helping (Unsplash) -->
                         <div class="gallery-thumbnail">
                             <a href="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800" target="_blank">
                                 <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400" alt="Volunteers supporting refugees" loading="lazy">
                             </a>
                         </div>
-                        <div class="gallery-thumbnail">
-                            <a href="refugee-week-2023-1.webp" target="_blank">
-                                <img src="refugee-week-2023-1.webp" alt="Refugee Week 2023 at Preston Mela" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="gallery-thumbnail">
-                            <a href="diversity-4.webp" target="_blank">
-                                <img src="diversity-4.webp" alt="Diverse family smiling" loading="lazy">
-                            </a>
-                        </div>
+<!-- 55555555555555555555555555555555555555555555 -->
+            <!-- Image 3: Refugee Week -->
 
+           <div class="gallery-thumbnail">
+    <a href="refugee-week-2023-1.webp" target="_blank">
+        <img src="refugee-week-2023-1.webp" alt="Refugee Week 2023 at Preston Mela" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+
+
+           <!-- Image 4: Diverse family (Unsplash) -->
+
+           <div class="gallery-thumbnail">
+    <a href="diversity-4.webp" target="_blank">
+        <img src="diversity-4.webp" alt="Diverse family smiling" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </a>
+</div>
+
+<!-- 55555555555555555555555555555555555555555555 -->
+
+                        <!-- Image 5: Group of friends (Unsplash) -->
                         <div class="gallery-thumbnail">
                             <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
                                 <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
                             </a>
                         </div>
+                        <!-- Image 6: Hands together (Unsplash) -->
                         <div class="gallery-thumbnail">
                             <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
                                 <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
                             </a>
                         </div>
+
+                        <!-- Image 10: Park gathering (Unsplash) -->
                         <div class="gallery-thumbnail">
                             <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
                                 <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
                             </a>
                         </div>
-    <!-- 44444444444444444444444444444444444444444444 -->
                     </div>
+
                     <p style="text-align: center; margin-top: 15px; color: #666;">
                         <i class="fas fa-arrow-left me-2"></i> Scroll to see more photos  <i class="fas fa-arrow-right ms-2"></i><br>
                         <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" style="color: var(--primary-color); font-weight: 600;">View more on our Facebook page →</a>
                     </p>
                 </div>
+
             `,
             
             'experts-group': `
@@ -2897,6 +2662,10 @@ margin: 0px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid v
                                 <p><strong>Watch our <a href="${FACEBOOK_PAGE_URL}" target="_blank">Facebook page</a> for further details.</strong></p>
                             </div>
 
+
+
+
+
 <!-- Submit an Event Section -->
 <div style="
     margin-top: 30px;
@@ -2980,6 +2749,20 @@ margin: 0px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid v
     </a>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+                            
+
+
+
                             <!-- Follow us reminder -->
                             <div style="
                                 margin-top: 30px;
@@ -3031,6 +2814,42 @@ margin: 0px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid v
                     ${facebookSidebarHTML}
                 </div>
             `,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // ============ PAST EVENTS PAGE ============
             'PastEvents': `
@@ -4763,100 +4582,6 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         // Function to close search modal globally
         window.closeSearchModal = closeSearchModal;
 
-        // ============ LIGHTBOX FUNCTIONS (FIXED FOR CONTINUOUS SLIDESHOW) ============
-        let currentImageIndex = 0;
-        let galleryImages = [];
-        let slideshowInterval = null;
-
-        function startSlideshow(intervalMs = 2000) { // 1 second as requested
-            stopSlideshow();
-            slideshowInterval = setInterval(() => {
-                nextImage(true); // automatic – do NOT stop the slideshow
-            }, intervalMs);
-        }
-
-        function stopSlideshow() {
-            if (slideshowInterval) {
-                clearInterval(slideshowInterval);
-                slideshowInterval = null;
-            }
-        }
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = lightbox.querySelector('.lightbox-image');
-            lightboxImg.src = galleryImages[currentImageIndex];
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            startSlideshow(); // start automatic cycling
-        }
-
-        function closeLightbox() {
-            stopSlideshow();
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function prevImage(isAuto = false) {
-            if (!isAuto) stopSlideshow(); // manual navigation stops slideshow
-            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-            document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
-        }
-
-        function nextImage(isAuto = false) {
-            if (!isAuto) stopSlideshow(); // manual navigation stops slideshow
-            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-            document.querySelector('.lightbox-image').src = galleryImages[currentImageIndex];
-        }
-
-        function initGalleryLightbox() {
-            const thumbnails = document.querySelectorAll('.gallery-thumbnail a');
-            if (thumbnails.length === 0) return;
-
-            galleryImages = [];
-            thumbnails.forEach((a, index) => {
-                const href = a.getAttribute('href');
-                if (href) galleryImages.push(href);
-
-                // Remove default link behavior
-                a.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openLightbox(index);
-                });
-            });
-        }
-
-        // Attach lightbox event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-            lightbox.querySelector('.lightbox-prev').addEventListener('click', function() {
-                prevImage(false); // manual
-            });
-            lightbox.querySelector('.lightbox-next').addEventListener('click', function() {
-                nextImage(false); // manual
-            });
-
-            // Close when clicking outside the image (on overlay)
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) closeLightbox();
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (!lightbox.classList.contains('active')) return;
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') {
-                    prevImage(false); // manual
-                }
-                if (e.key === 'ArrowRight') {
-                    nextImage(false); // manual
-                }
-            });
-        });
-
         // ============ UPDATED LOAD CONTENT FUNCTION ============
         window.loadContent = function(section) {
             console.log('Loading content for:', section);
@@ -4887,11 +4612,6 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 setTimeout(() => {
                     loadFacebookFeed(); // this will find the container and fetch RSS
                 }, 100);
-
-                // Initialize gallery lightbox if we're on home page (or any page with gallery)
-                setTimeout(() => {
-                    initGalleryLightbox();
-                }, 200);
                 
                 updateActiveNavLink(section);
                 
@@ -4935,7 +4655,6 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 
                 // Load Facebook feed after content update
                 setTimeout(loadFacebookFeed, 100);
-                setTimeout(initGalleryLightbox, 200);
             }
         }
 
