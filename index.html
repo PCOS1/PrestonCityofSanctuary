@@ -215,6 +215,34 @@
             font-size: 0.9rem;
         }
         
+        .language-switcher {
+            display: flex;
+            gap: 5px;
+            margin-left: 10px;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            color: #555;
+        }
+        
+        .lang-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: #eee;
+        }
+        
         .top-social-icons {
             display: flex;
             align-items: center;
@@ -1719,6 +1747,13 @@
                 <input type="text" id="siteSearchInput" placeholder="Search within this site..." aria-label="Search this website">
             </div>
             
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en">En</button>
+                <button class="lang-btn" data-lang="fa">Fa</button>
+                <button class="lang-btn" data-lang="ar">Ar</button>
+            </div>
+            
             <div class="top-social-icons">
                 <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" title="Follow us on Facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -1994,8 +2029,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 // ============16 Feb 2026  2222222222222222222222222222222222222222222 ============
-
-
 
 // ============ IMPROVED FACEBOOK FEED WITH WORKING FETCHRSS FEED ============
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/';
@@ -2323,6 +2356,20 @@ const facebookSidebarHTML = `
                 <div class="container">
                     <h1 class="page-title">Welcome to Preston City of Sanctuary!</h1>
                     <p class="page-subtitle">Building a culture of welcome for people seeking sanctuary in the UK</p>
+                </div>
+            `,
+            // Persian version of the home page title (will be used when language is fa)
+            'home_fa': `
+                <div class="container">
+                    <h1 class="page-title">به پرستون، شهر پناهگاه خوش آمدید!</h1>
+                    <p class="page-subtitle">ایجاد فرهنگ پذیرایی از افرادی که در بریتانیا به دنبال پناهندگی هستند</p>
+                </div>
+            `,
+            // ADDED: Arabic version of the home page title
+            'home_ar': `
+                <div class="container">
+                    <h1 class="page-title">مرحباً بكم في بريستون مدينة الملجأ!</h1>
+                    <p class="page-subtitle">نبني ثقافة الترحيب للأشخاص الباحثين عن ملجأ في المملكة المتحدة</p>
                 </div>
             `,
             'about': `
@@ -2756,6 +2803,490 @@ Our aim is to create a network of people and organisations right across the city
                     <p style="text-align: center; margin-top: 15px; color: #666;">
                         <i class="fas fa-arrow-left me-2"></i> Scroll to see more photos  <i class="fas fa-arrow-right ms-2"></i><br>
                         <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" style="color: var(--primary-color); font-weight: 600;">View more on our Facebook page →</a>
+                    </p>
+                </div>
+            `,
+            
+            'home_fa': `
+                <div class="two-column-layout" style="display: flex; flex-wrap: wrap;">
+                    <div class="content-left-column">
+                        <section class="dynamic-content">
+                            <div class="info-box" style="background-color: #e7f3ff; border-left-color: var(--accent-color);">
+                                <p>
+                                    <strong><i class="fas fa-external-link-alt me-2"></i>بخشی از یک جنبش ملی:</strong>
+                                    ما پرستون، شهر پناهگاه هستیم، بخشی از شبکه 
+                                    <a href="https://cityofsanctuary.org/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); font-weight: bold; text-decoration: underline;">
+                                        شهر پناهگاه بریتانیا
+                                    </a> 
+                                    - در سراسر کشور، فرهنگ پذیرایی از افرادی که به دنبال پناهندگی هستند را ایجاد می‌کنیم.
+                                </p>
+                            </div>
+                    <p>
+هدف ما ایجاد شبکه‌ای از مردم و سازمان‌ها در سراسر شهر است که در جهت پذیرایی‌تر، بازتر و عادلانه‌تر کردن شهرمان برای همه متحد شده‌اند، با ایجاد بسترهایی برای همکاری، گفتگو و فرصت‌های مشترک.
+</p>
+
+<p> برای دریافت آخرین اخبار، رویدادها و کمپین‌ها، لطفاً از <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">صفحه فیسبوک ما</a> دیدن کنید، <a href="https://bsky.app/profile/prestoncitysanct.bsky.social" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">خوراک بلوسکای ما</a> را دنبال کنید یا به <a href="https://groups.google.com/g/preston-city-of-sanctuary?pli=1" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">گروه گوگلی ما</a> بپیوندید. </p>
+
+                            <div style="margin: 20px 0; text-align: center;">
+                                <div style="position: relative; display: inline-block; max-width: 100%;">                         
+                                    <a href="https://www.youtube.com/watch?v=dcIKZXzNZFI"
+                                       target="_blank"
+                                       style="text-decoration: none; color: inherit;">
+                                        <div style="position: relative;">
+                                            <img src="https://img.youtube.com/vi/dcIKZXzNZFI/hqdefault.jpg" 
+                                                 alt="پیش‌نمایش ویدیوی پرستون، شهر پناهگاه"
+                                                 style="width: 100%; max-width: 560px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,0,0,0.8); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                                <span style="color: white; font-size: 30px; margin-left: 5px;">▶</span>
+                                            </div>
+                                        </div>
+                                        <p style="margin-top: 10px; font-weight: bold; color: #ff0000;">برای تماشای ویدیوی معرفی ما کلیک کنید</p>
+                                    </a>
+                                </div>
+                            </div>
+                                                       
+                            <div class="mt-4">
+                                <a href="#about" onclick="loadContent('about'); return false;" class="btn btn-primary-custom me-3">بیشتر درباره ما بدانید</a>
+                                <a href="#PlannedEvents" onclick="loadContent('PlannedEvents'); return false;" class="btn btn-outline-primary">مشاهده رویدادهای پیش‌رو</a>
+                            </div>
+                        </section>
+                    </div>
+                    ${facebookSidebarHTML}
+                </div>
+
+                <!-- NEW SCROLLING MARQUEE GALLERY (replaces the old static gallery) -->
+                <div style="margin-top: 1px; width: 100%; overflow: hidden;">
+                    <div class="marquee-gallery">
+                        <!-- First set of images (duplicated for seamless loop) -->
+
+
+
+    <!-- 44444444444444444444444444444444444444444444 -->
+                        <div class="gallery-thumbnail">
+                            <a href="refugee-week-2023-3.webp" target="_blank">
+                                <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="sanctuary1.jpg" target="_blank">
+                                <img src="sanctuary1.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+    <!-- 44444444444444444444444444444444444444444444 -->
+                        <div class="gallery-thumbnail">
+                            <a href="pic1.jpg" target="_blank">
+                                <img src="pic1.jpg" alt="smiling" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="gallery-thumbnail">
+                            <a href="pic2.webp" target="_blank">
+                                <img src="pic2.webp" alt="Diverse" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic3.jpg" target="_blank">
+                                <img src="pic3.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic4.jpg" target="_blank">
+                                <img src="pic4.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic5.webp" target="_blank">
+                                <img src="pic5.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic6.webp" target="_blank">
+                                <img src="pic6.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic7.webp" target="_blank">
+                                <img src="pic7.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic8.webp" target="_blank">
+                                <img src="pic8.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic9.jpg" target="_blank">
+                                <img src="pic9.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic10.jpg" target="_blank">
+                                <img src="pic10.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic11.jpg" target="_blank">
+                                <img src="pic11.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic12.jpg" target="_blank">
+                                <img src="pic12.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="gallery-thumbnail">
+                            <a href="png1.png" target="_blank">
+                                <img src="png1.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png2.png" target="_blank">
+                                <img src="png2.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png3.png" target="_blank">
+                                <img src="png3.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png4.png" target="_blank">
+                                <img src="png4.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png5.png" target="_blank">
+                                <img src="png5.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png6.png" target="_blank">
+                                <img src="png6.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png7.png" target="_blank">
+                                <img src="png7.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png8.png" target="_blank">
+                                <img src="png8.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png9.png" target="_blank">
+                                <img src="png9.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png10.png" target="_blank">
+                                <img src="png10.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+
+    <!-- 44444444444444444444444444444444444444444444 -->
+
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
+                            </a>
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="gallery-thumbnail">
+                            <a href="refugee-week-2023-3.webp" target="_blank">
+                                <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400" alt="Volunteers supporting refugees" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="refugee-week-2023-1.webp" target="_blank">
+                                <img src="refugee-week-2023-1.webp" alt="Refugee Week 2023 at Preston Mela" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="diversity-4.webp" target="_blank">
+                                <img src="diversity-4.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
+                            </a>
+                        </div>
+    <!-- 44444444444444444444444444444444444444444444 -->
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #666;">
+                        <i class="fas fa-arrow-left me-2"></i> برای دیدن عکس‌های بیشتر اسکرول کنید  <i class="fas fa-arrow-right ms-2"></i><br>
+                        <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" style="color: var(--primary-color); font-weight: 600;">مشاهده بیشتر در صفحه فیسبوک ما →</a>
+                    </p>
+                </div>
+            `,
+            
+            // ADDED: Arabic version of the home page content
+            'home_ar': `
+                <div class="two-column-layout" style="display: flex; flex-wrap: wrap;">
+                    <div class="content-left-column">
+                        <section class="dynamic-content">
+                            <div class="info-box" style="background-color: #e7f3ff; border-left-color: var(--accent-color);">
+                                <p>
+                                    <strong><i class="fas fa-external-link-alt me-2"></i>جزء من حركة وطنية:</strong>
+                                    نحن بريستون مدينة الملجأ، جزء من شبكة 
+                                    <a href="https://cityofsanctuary.org/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); font-weight: bold; text-decoration: underline;">
+                                        مدن الملجأ في المملكة المتحدة
+                                    </a> 
+                                    - نبني ثقافة الترحيب للأشخاص الباحثين عن ملجأ في جميع أنحاء البلاد.
+                                </p>
+                            </div>
+                    <p>
+هدفنا هو إنشاء شبكة من الأشخاص والمؤسسات في جميع أنحاء المدينة، متحدين في جعل مدينتنا أكثر ترحيباً وانفتاحاً وعدالة للجميع، من خلال خلق منصات للتعاون والحوار والفرص المشتركة.</p>
+
+<p> للحصول على آخر الأخبار والفعاليات والحملات، يرجى زيارة <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">صفحتنا على فيسبوك</a>، أو متابعة <a href="https://bsky.app/profile/prestoncitysanct.bsky.social" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">منشوراتنا على بلوسكاي</a> أو الانضمام إلى <a href="https://groups.google.com/g/preston-city-of-sanctuary?pli=1" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">مجموعتنا على جوجل</a>. </p>
+
+                            <div style="margin: 20px 0; text-align: center;">
+                                <div style="position: relative; display: inline-block; max-width: 100%;">                         
+                                    <a href="https://www.youtube.com/watch?v=dcIKZXzNZFI"
+                                       target="_blank"
+                                       style="text-decoration: none; color: inherit;">
+                                        <div style="position: relative;">
+                                            <img src="https://img.youtube.com/vi/dcIKZXzNZFI/hqdefault.jpg" 
+                                                 alt="صورة مصغرة لفيديو بريستون مدينة الملجأ"
+                                                 style="width: 100%; max-width: 560px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,0,0,0.8); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                                <span style="color: white; font-size: 30px; margin-left: 5px;">▶</span>
+                                            </div>
+                                        </div>
+                                        <p style="margin-top: 10px; font-weight: bold; color: #ff0000;">انقر لمشاهدة الفيديو التعريفي</p>
+                                    </a>
+                                </div>
+                            </div>
+                                                       
+                            <div class="mt-4">
+                                <a href="#about" onclick="loadContent('about'); return false;" class="btn btn-primary-custom me-3">تعرف علينا أكثر</a>
+                                <a href="#PlannedEvents" onclick="loadContent('PlannedEvents'); return false;" class="btn btn-outline-primary">عرض الفعاليات القادمة</a>
+                            </div>
+                        </section>
+                    </div>
+                    ${facebookSidebarHTML}
+                </div>
+
+                <!-- NEW SCROLLING MARQUEE GALLERY (replaces the old static gallery) -->
+                <div style="margin-top: 1px; width: 100%; overflow: hidden;">
+                    <div class="marquee-gallery">
+                        <!-- First set of images (duplicated for seamless loop) -->
+
+
+
+    <!-- 44444444444444444444444444444444444444444444 -->
+                        <div class="gallery-thumbnail">
+                            <a href="refugee-week-2023-3.webp" target="_blank">
+                                <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="sanctuary1.jpg" target="_blank">
+                                <img src="sanctuary1.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+    <!-- 44444444444444444444444444444444444444444444 -->
+                        <div class="gallery-thumbnail">
+                            <a href="pic1.jpg" target="_blank">
+                                <img src="pic1.jpg" alt="smiling" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="gallery-thumbnail">
+                            <a href="pic2.webp" target="_blank">
+                                <img src="pic2.webp" alt="Diverse" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic3.jpg" target="_blank">
+                                <img src="pic3.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic4.jpg" target="_blank">
+                                <img src="pic4.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic5.webp" target="_blank">
+                                <img src="pic5.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic6.webp" target="_blank">
+                                <img src="pic6.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic7.webp" target="_blank">
+                                <img src="pic7.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic8.webp" target="_blank">
+                                <img src="pic8.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic9.jpg" target="_blank">
+                                <img src="pic9.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic10.jpg" target="_blank">
+                                <img src="pic10.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic11.jpg" target="_blank">
+                                <img src="pic11.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="pic12.jpg" target="_blank">
+                                <img src="pic12.jpg" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="gallery-thumbnail">
+                            <a href="png1.png" target="_blank">
+                                <img src="png1.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png2.png" target="_blank">
+                                <img src="png2.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png3.png" target="_blank">
+                                <img src="png3.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png4.png" target="_blank">
+                                <img src="png4.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png5.png" target="_blank">
+                                <img src="png5.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png6.png" target="_blank">
+                                <img src="png6.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png7.png" target="_blank">
+                                <img src="png7.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png8.png" target="_blank">
+                                <img src="png8.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png9.png" target="_blank">
+                                <img src="png9.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="png10.png" target="_blank">
+                                <img src="png10.png" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+
+    <!-- 44444444444444444444444444444444444444444444 -->
+
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
+                            </a>
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="gallery-thumbnail">
+                            <a href="refugee-week-2023-3.webp" target="_blank">
+                                <img src="refugee-week-2023-3.webp" alt="Refugee Week 2023 community engagement" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400" alt="Volunteers supporting refugees" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="refugee-week-2023-1.webp" target="_blank">
+                                <img src="refugee-week-2023-1.webp" alt="Refugee Week 2023 at Preston Mela" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="diversity-4.webp" target="_blank">
+                                <img src="diversity-4.webp" alt="Diverse family smiling" loading="lazy">
+                            </a>
+                        </div>
+
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=400" alt="Community group" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400" alt="Hands together unity" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="gallery-thumbnail">
+                            <a href="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400" alt="Outdoor community event" loading="lazy">
+                            </a>
+                        </div>
+    <!-- 44444444444444444444444444444444444444444444 -->
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #666;">
+                        <i class="fas fa-arrow-left me-2"></i> قم بالتمرير لرؤية المزيد من الصور <i class="fas fa-arrow-right ms-2"></i><br>
+                        <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" style="color: var(--primary-color); font-weight: 600;">عرض المزيد على صفحتنا على فيسبوك →</a>
                     </p>
                 </div>
             `,
@@ -4891,8 +5422,23 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         window.loadContent = function(section) {
             console.log('Loading content for:', section);
             
-            const pageTitle = pageTitleTemplates[section];
-            const content = contentTemplates[section];
+            // Use language-aware title if available
+            let titleKey = section;
+            if (currentLang === 'fa' && section === 'home') {
+                titleKey = 'home_fa';
+            } else if (currentLang === 'ar' && section === 'home') {
+                titleKey = 'home_ar';
+            }
+            const pageTitle = pageTitleTemplates[titleKey] || pageTitleTemplates[section];
+            
+            // Use language-aware content if available
+            let contentKey = section;
+            if (currentLang === 'fa' && section === 'home') {
+                contentKey = 'home_fa';
+            } else if (currentLang === 'ar' && section === 'home') {
+                contentKey = 'home_ar';
+            }
+            const content = contentTemplates[contentKey];
             
             if (pageTitle && content) {
                 const newUrl = `${window.location.origin}${window.location.pathname}#${section}`;
@@ -5170,6 +5716,162 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 });
             });
         }
+
+        // ============ LANGUAGE SWITCHER ADDITION ============
+        let currentLang = 'en';
+
+        const menuTranslations = {
+            en: {
+                home: "Home",
+                about: "About Us",
+                about_sub: ["About Us", "What We Do", "Who We Are", "Experts Group", "Policies & Documents"],
+                local: "Local Support",
+                local_sub: ["Red Cross", "Kind Communities", "Muslim Forum", "Sports & Leisure", "Help In Preston"],
+                learn: "Learning English",
+                learn_sub: ["Learning English (ESOL)", "Translation & interpreting", "Schools", "Libraries", "Universities"],
+                public: "Public Services",
+                public_sub: ["Housing", "Health", "Work", "Immigration Rights", "Transport"],
+                involve: "Get Involved",
+                involve_sub: ["For Volunteers", "Campaigns", "Donate"],
+                events: "Events",
+                events_sub: ["Planned Events", "Past Events", "Our Covid memories project 2020"],
+                contact: "Contact",
+                contact_sub: ["Contact Overview", "Get In Touch (Form)"]
+            },
+            fa: {
+                home: "خانه",
+                about: "درباره ما",
+                about_sub: ["درباره ما", "کارهای ما", "ما که هستیم", "گروه متخصصان", "اسناد و سیاست‌ها"],
+                local: "حمایت محلی",
+                local_sub: ["صلیب سرخ", "کاميونيتي‌های مهربان", "انجمن مسلمانان", "ورزش و اوقات فراغت", "راهنما در پرستون"],
+                learn: "یادگیری انگلیسی",
+                learn_sub: ["یادگیری انگلیسی (ESOL)", "ترجمه و تفسیر", "مدارس", "کتابخانه‌ها", "دانشگاه‌ها"],
+                public: "خدمات عمومی",
+                public_sub: ["مسکن", "سلامت", "کار", "حقوق مهاجرت", "حمل و نقل"],
+                involve: "مشارکت کنید",
+                involve_sub: ["برای داوطلبان", "کمپین‌ها", "کمک مالی"],
+                events: "رویدادها",
+                events_sub: ["رویدادهای برنامه‌ریزی‌شده", "رویدادهای گذشته", "پروژه خاطرات کرونایی ما ۲۰۲۰"],
+                contact: "تماس",
+                contact_sub: ["اطلاعات تماس", "فرم تماس"]
+            },
+            ar: {
+                home: "الرئيسية",
+                about: "معلومات عنا",
+                about_sub: ["معلومات عنا", "ماذا نفعل", "من نحن", "مجموعة الخبراء", "السياسات والوثائق"],
+                local: "الدعم المحلي",
+                local_sub: ["الصليب الأحمر", "المجتمعات اللطيفة", "المنتدى الإسلامي", "الرياضة والترفيه", "مساعدة في بريستون"],
+                learn: "تعلم الإنجليزية",
+                learn_sub: ["تعلم الإنجليزية (ESOL)", "الترجمة والتفسير", "المدارس", "المكتبات", "الجامعات"],
+                public: "الخدمات العامة",
+                public_sub: ["الإسكان", "الصحة", "العمل", "حقوق الهجرة", "النقل"],
+                involve: "شارك معنا",
+                involve_sub: ["للمتطوعين", "الحملات", "التبرع"],
+                events: "الفعاليات",
+                events_sub: ["الفعاليات المخطط لها", "الفعاليات السابقة", "مشروع ذكريات كورونا ۲۰۲۰"],
+                contact: "اتصل بنا",
+                contact_sub: ["نظرة عامة", "نموذج الاتصال"]
+            }
+        };
+
+        const searchPlaceholders = {
+            en: "Search within this site...",
+            fa: "جستجو در این وبسایت...",
+            ar: "ابحث داخل هذا الموقع..."
+        };
+
+        const footerTexts = {
+            en: {
+                p1: "Preston City of Sanctuary, part of the national <a href='https://cityofsanctuary.org/' target='_blank' rel='noopener noreferrer' style='color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;'>City of Sanctuary</a> movement building a culture of welcome for people seeking sanctuary in the UK.",
+                join: "Join Our Google Email Group:",
+                stay: "Stay updated with news, events and activities",
+                btn: "View/Join Google Group",
+                quick: "Quick Links"
+            },
+            fa: {
+                p1: "پرستون سیتی آف سانکچوری، بخشی از جنبش ملی <a href='https://cityofsanctuary.org/' target='_blank' rel='noopener noreferrer' style='color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;'>شهر پناهگاه</a> که فرهنگ خوشامدگویی را برای افرادی که در بریتانیا به دنبال پناهندگی هستند ایجاد می‌کند.",
+                join: "به گروه ایمیل گوگل ما بپیوندید:",
+                stay: "با آخرین اخبار، رویدادها و فعالیت‌ها به‌روز بمانید",
+                btn: "مشاهده / عضویت در گروه گوگل",
+                quick: "لینک‌های سریع"
+            },
+            ar: {
+                p1: "بريستون سيتي أوف سانكتشوري، جزء من حركة <a href='https://cityofsanctuary.org/' target='_blank' rel='noopener noreferrer' style='color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;'>مدينة اللجوء</a> الوطنية لبناء ثقافة الترحيب للأشخاص الباحثين عن اللجوء في المملكة المتحدة.",
+                join: "انضم إلى مجموعة البريد الإلكتروني الخاصة بنا على جوجل:",
+                stay: "ابق على اطلاع بآخر الأخبار والفعاليات والأنشطة",
+                btn: "عرض / الانضمام إلى مجموعة جوجل",
+                quick: "روابط سريعة"
+            }
+        };
+
+        function updateNavLanguage(lang) {
+            const t = menuTranslations[lang];
+            if (!t) return;
+            document.getElementById('home-link').innerText = t.home;
+            document.getElementById('about-main-link').innerText = t.about;
+            const aboutSub = document.querySelectorAll('#about-main-link + .dropdown-menu .dropdown-item');
+            aboutSub.forEach((el, idx) => { if (t.about_sub[idx]) el.innerText = t.about_sub[idx]; });
+            document.getElementById('local-support-main-link').innerText = t.local;
+            const localSub = document.querySelectorAll('#local-support-main-link + .dropdown-menu .dropdown-item');
+            localSub.forEach((el, idx) => { if (t.local_sub[idx]) el.innerText = t.local_sub[idx]; });
+            document.getElementById('learning-education-main-link').innerText = t.learn;
+            const learnSub = document.querySelectorAll('#learning-education-main-link + .dropdown-menu .dropdown-item');
+            learnSub.forEach((el, idx) => { if (t.learn_sub[idx]) el.innerText = t.learn_sub[idx]; });
+            document.getElementById('public-services-main-link').innerText = t.public;
+            const publicSub = document.querySelectorAll('#public-services-main-link + .dropdown-menu .dropdown-item');
+            publicSub.forEach((el, idx) => { if (t.public_sub[idx]) el.innerText = t.public_sub[idx]; });
+            document.getElementById('get-involved-main-link').innerText = t.involve;
+            const involveSub = document.querySelectorAll('#get-involved-main-link + .dropdown-menu .dropdown-item');
+            involveSub.forEach((el, idx) => { if (t.involve_sub[idx]) el.innerText = t.involve_sub[idx]; });
+            document.getElementById('Events-main-link').innerText = t.events;
+            const eventsSub = document.querySelectorAll('#Events-main-link + .dropdown-menu .dropdown-item');
+            eventsSub.forEach((el, idx) => { if (t.events_sub[idx]) el.innerText = t.events_sub[idx]; });
+            document.getElementById('contact-main-link').innerText = t.contact;
+            const contactSub = document.querySelectorAll('#contact-main-link + .dropdown-menu .dropdown-item');
+            contactSub.forEach((el, idx) => { if (t.contact_sub[idx]) el.innerText = t.contact_sub[idx]; });
+        }
+
+        function updateFooterLanguage(lang) {
+            const ft = footerTexts[lang];
+            if (ft) {
+                const footerP = document.querySelector('#contact-footer .col-lg-4:first-child p:first-child');
+                if (footerP) footerP.innerHTML = ft.p1;
+                const joinTitle = document.querySelector('#contact-footer .col-lg-4:nth-child(2) .contact-info div strong');
+                if (joinTitle) joinTitle.innerText = ft.join;
+                const stayText = document.querySelector('#contact-footer .col-lg-4:nth-child(2) .contact-info div p:first-of-type');
+                if (stayText && stayText.innerText.includes('Stay updated')) stayText.innerText = ft.stay;
+                const joinBtn = document.querySelector('#contact-footer .col-lg-4:nth-child(2) .contact-info a');
+                if (joinBtn) joinBtn.innerText = ft.btn;
+                const quickTitle = document.querySelector('#contact-footer .col-lg-4:last-child h4');
+                if (quickTitle) quickTitle.innerText = ft.quick;
+            }
+        }
+
+        function updateSearchPlaceholder(lang) {
+            const searchInput = document.getElementById('siteSearchInput');
+            if (searchInput) searchInput.placeholder = searchPlaceholders[lang];
+        }
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const newLang = this.getAttribute('data-lang');
+                if (newLang === currentLang) return;
+                currentLang = newLang;
+                langBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                updateNavLanguage(currentLang);
+                updateFooterLanguage(currentLang);
+                updateSearchPlaceholder(currentLang);
+                // Reload current content to reflect the new language for the home page
+                if (window.loadContent) {
+                    const currentSection = window.location.hash.substring(1) || 'home';
+                    window.loadContent(currentSection);
+                }
+            });
+        });
+
+        console.log("Language switcher active. Menus and footer translated.");
     </script>
 </body>
 </html>
