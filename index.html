@@ -5619,7 +5619,7 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         }
 
         // ============ UPDATED LOAD CONTENT FUNCTION ============
-        window.loadContent = function(section) {
+        window.loadContent = function(section, preserveImgParam = false) {
             console.log('Loading content for:', section);
             
             // Use language-aware title if available
@@ -5640,13 +5640,7 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             }
             let content = contentTemplates[contentKey];
             
-            // For all sections that are not 'gallery', we need to load the original full content.
-            // Since the original file includes the full content for each page, we refer to that.
-            // In this final version, the actual contentTemplates object contains all the original
-            // data (as provided by the user). For the sake of this answer, we assume it's there.
-            // To avoid duplication, we keep the original content intact.
             if (!content && section !== 'gallery') {
-                // Fallback – should not happen because original file has everything.
                 content = `<div class="two-column-layout"><div class="content-left-column"><p>Content for ${section} is available in the original file.</p></div>${facebookSidebarHTML}</div>`;
             }
             if (section === 'gallery') {
@@ -5654,8 +5648,22 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             }
             
             if (pageTitle && content) {
-                const newUrl = `${window.location.origin}${window.location.pathname}#${section}`;
-                history.pushState({ section: section, searchQuery: lastSearchQuery }, '', newUrl);
+                // Build new URL preserving img parameter for gallery if needed
+                let targetUrl;
+                if (section === 'gallery') {
+                    const currentHash = window.location.hash;
+                    const imgMatch = currentHash.match(/[?&]img=(\d+)/);
+                    if (imgMatch && imgMatch[1] && preserveImgParam) {
+                        // Keep the original img parameter when loading from direct URL
+                        targetUrl = `${window.location.origin}${window.location.pathname}#gallery?img=${imgMatch[1]}`;
+                    } else {
+                        // Otherwise reset to gallery without img (defaults to index 0)
+                        targetUrl = `${window.location.origin}${window.location.pathname}#gallery`;
+                    }
+                } else {
+                    targetUrl = `${window.location.origin}${window.location.pathname}#${section}`;
+                }
+                history.pushState({ section: section, searchQuery: lastSearchQuery }, '', targetUrl);
                 
                 if (pageTitleArea) {
                     pageTitleArea.innerHTML = pageTitle;
@@ -5710,6 +5718,37 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             let section = hash.split('?')[0] || 'home';
             const searchQuery = event.state ? event.state.searchQuery : '';
             
+            // For gallery, preserve the img parameter when loading
+            if (section === 'gallery') {
+                // will be handled inside loadContent as it preserves the parameter from current hash
+                if (!contentTemplates[section] && section !== 'gallery') {
+                    section = 'home';
+                }
+                const pageTitle = pageTitleTemplates[section];
+                let content = contentTemplates[section];
+                if (section === 'gallery') content = contentTemplates.gallery;
+                
+                if (pageTitle && content) {
+                    pageTitleArea.innerHTML = pageTitle;
+                    contentArea.innerHTML = content;
+                    updateActiveNavLink(section);
+                    
+                    if (searchQuery) {
+                        lastSearchQuery = searchQuery;
+                        setTimeout(() => {
+                            highlightSearchTermsInContent(searchQuery);
+                        }, 100);
+                    }
+                    
+                    setTimeout(loadFacebookFeed, 100);
+                    setTimeout(() => {
+                        parseGalleryIndexFromHash();
+                        buildGalleryPage();
+                    }, 100);
+                }
+                return;
+            }
+            
             if (!contentTemplates[section] && section !== 'gallery') {
                 section = 'home';
             }
@@ -5723,7 +5762,6 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 contentArea.innerHTML = content;
                 updateActiveNavLink(section);
                 
-                // Restore search query and highlight if present
                 if (searchQuery) {
                     lastSearchQuery = searchQuery;
                     setTimeout(() => {
@@ -5731,7 +5769,6 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                     }, 100);
                 }
                 
-                // Load Facebook feed after content update
                 setTimeout(loadFacebookFeed, 100);
                 if (section === 'gallery') {
                     setTimeout(() => { parseGalleryIndexFromHash(); buildGalleryPage(); }, 100);
@@ -5880,7 +5917,7 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             console.log('Event listeners initialized successfully');
         }
 
-        // Handle initial page load
+        // Handle initial page load - preserve gallery img parameter
         function handleInitialPageLoad() {
             const hash = window.location.hash.substring(1);
             let initialSection = hash.split('?')[0] || 'home';
@@ -5890,7 +5927,12 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 history.replaceState({ section: 'home' }, '', window.location.pathname);
             }
             
-            loadContent(initialSection);
+            // If gallery, ensure we preserve the img parameter by loading with preserve flag
+            if (initialSection === 'gallery') {
+                loadContent('gallery', true);
+            } else {
+                loadContent(initialSection);
+            }
         }
 
         // Initialize on page load
