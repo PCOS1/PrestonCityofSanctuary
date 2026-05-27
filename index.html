@@ -5540,6 +5540,20 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
         ].filter(src => src && src.trim() !== "");
 
         let galleryCurrentIndex = 0;
+        let galleryNavBound = false; // prevent duplicate keydown listeners
+
+        function parseGalleryIndexFromHash() {
+            const hash = window.location.hash;
+            if (hash.startsWith('#gallery')) {
+                const match = hash.match(/[?&]img=(\d+)/);
+                if (match && match[1]) {
+                    let idx = parseInt(match[1], 10);
+                    if (!isNaN(idx) && idx >= 0 && idx < GALLERY_IMAGE_LIST.length) {
+                        galleryCurrentIndex = idx;
+                    }
+                }
+            }
+        }
         
         function buildGalleryPage() {
             if (!document.getElementById('galleryCurrentImg')) return;
@@ -5548,73 +5562,102 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
             const thumbContainer = document.getElementById('galleryThumbnails');
             const counterSpan = document.getElementById('galleryCounter');
             const urlInput = document.getElementById('imageShareUrl');
-            
+
             function updateGalleryUI() {
+                const total = GALLERY_IMAGE_LIST.length;
+                // Clamp index safely
+                if (galleryCurrentIndex < 0) galleryCurrentIndex = total - 1;
+                if (galleryCurrentIndex >= total) galleryCurrentIndex = 0;
+
                 const imgSrc = GALLERY_IMAGE_LIST[galleryCurrentIndex];
                 if (mainImg) mainImg.src = imgSrc;
-                if (counterSpan) counterSpan.innerText = `${galleryCurrentIndex+1} / ${GALLERY_IMAGE_LIST.length}`;
+                if (counterSpan) counterSpan.innerText = `${galleryCurrentIndex + 1} / ${total}`;
+
                 document.querySelectorAll('.gallery-thumb').forEach((thumb, idx) => {
-                    if (idx === galleryCurrentIndex) thumb.classList.add('active');
-                    else thumb.classList.remove('active');
+                    thumb.classList.toggle('active', idx === galleryCurrentIndex);
+                    if (idx === galleryCurrentIndex) {
+                        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }
                 });
+
                 // Update shareable URL
                 const baseUrl = window.location.href.split('#')[0];
                 const shareUrl = `${baseUrl}#gallery?img=${galleryCurrentIndex}`;
                 if (urlInput) urlInput.value = shareUrl;
-                history.replaceState({ galleryIndex: galleryCurrentIndex }, '', shareUrl);
+                history.replaceState({ section: 'gallery', galleryIndex: galleryCurrentIndex }, '', shareUrl);
             }
-            
-            // Render thumbnails
-            thumbContainer.innerHTML = '';
-            GALLERY_IMAGE_LIST.forEach((src, idx) => {
-                const thumb = document.createElement('img');
-                thumb.src = src;
-                thumb.alt = `Gallery image ${idx+1}`;
-                thumb.className = 'gallery-thumb';
-                thumb.addEventListener('click', () => {
-                    galleryCurrentIndex = idx;
-                    updateGalleryUI();
-                });
-                thumbContainer.appendChild(thumb);
-            });
-            updateGalleryUI();
-            
-            // Navigation buttons
-            document.getElementById('galleryPrev')?.addEventListener('click', () => {
-                galleryCurrentIndex = (galleryCurrentIndex - 1 + GALLERY_IMAGE_LIST.length) % GALLERY_IMAGE_LIST.length;
-                updateGalleryUI();
-            });
-            document.getElementById('galleryNext')?.addEventListener('click', () => {
+
+            function galleryGoNext() {
                 galleryCurrentIndex = (galleryCurrentIndex + 1) % GALLERY_IMAGE_LIST.length;
                 updateGalleryUI();
-            });
-            mainImg?.addEventListener('click', () => {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = lightbox.querySelector('.lightbox-image');
-                lightboxImg.src = GALLERY_IMAGE_LIST[galleryCurrentIndex];
-                lightbox.classList.add('active');
-                startSlideshow();
-            });
+            }
+
+            function galleryGoPrev() {
+                galleryCurrentIndex = (galleryCurrentIndex - 1 + GALLERY_IMAGE_LIST.length) % GALLERY_IMAGE_LIST.length;
+                updateGalleryUI();
+            }
+            
+            // Render thumbnails (only once — skip if already rendered with same count)
+            if (thumbContainer.children.length !== GALLERY_IMAGE_LIST.length) {
+                thumbContainer.innerHTML = '';
+                GALLERY_IMAGE_LIST.forEach((src, idx) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = src;
+                    thumb.alt = `Gallery image ${idx + 1}`;
+                    thumb.className = 'gallery-thumb';
+                    thumb.addEventListener('click', () => {
+                        galleryCurrentIndex = idx;
+                        updateGalleryUI();
+                    });
+                    thumbContainer.appendChild(thumb);
+                });
+            }
+
+            updateGalleryUI();
+            
+            // Navigation buttons — replace with fresh clones to remove stale listeners
+            const prevBtn = document.getElementById('galleryPrev');
+            const nextBtn = document.getElementById('galleryNext');
+
+            if (prevBtn) {
+                const newPrev = prevBtn.cloneNode(true);
+                prevBtn.parentNode.replaceChild(newPrev, prevBtn);
+                newPrev.addEventListener('click', (e) => { e.stopPropagation(); galleryGoPrev(); });
+            }
+            if (nextBtn) {
+                const newNext = nextBtn.cloneNode(true);
+                nextBtn.parentNode.replaceChild(newNext, nextBtn);
+                newNext.addEventListener('click', (e) => { e.stopPropagation(); galleryGoNext(); });
+            }
+
+            // Main image click → open lightbox at current index
+            const freshMainImg = document.getElementById('galleryCurrentImg');
+            if (freshMainImg) {
+                freshMainImg.onclick = () => {
+                    galleryImages = [...GALLERY_IMAGE_LIST];
+                    openLightbox(galleryCurrentIndex);
+                };
+            }
+
             document.getElementById('copyUrlBtn')?.addEventListener('click', () => {
                 const input = document.getElementById('imageShareUrl');
-                if (input) { input.select(); document.execCommand('copy'); alert('Image URL copied to clipboard!'); }
-            });
-            // Keyboard navigation for gallery page
-            document.addEventListener('keydown', (e) => {
-                if (!document.getElementById('galleryCurrentImg')) return;
-                if (e.key === 'ArrowLeft') { galleryCurrentIndex = (galleryCurrentIndex - 1 + GALLERY_IMAGE_LIST.length) % GALLERY_IMAGE_LIST.length; updateGalleryUI(); }
-                if (e.key === 'ArrowRight') { galleryCurrentIndex = (galleryCurrentIndex + 1) % GALLERY_IMAGE_LIST.length; updateGalleryUI(); }
-            });
-        }
-        
-        function parseGalleryIndexFromHash() {
-            const hash = window.location.hash;
-            if (hash.startsWith('#gallery')) {
-                const match = hash.match(/[?&]img=(\d+)/);
-                if (match && match[1]) {
-                    let idx = parseInt(match[1], 10);
-                    if (!isNaN(idx) && idx >= 0 && idx < GALLERY_IMAGE_LIST.length) galleryCurrentIndex = idx;
+                if (input) {
+                    input.select();
+                    try { document.execCommand('copy'); } catch(e) { navigator.clipboard?.writeText(input.value); }
+                    alert('Image URL copied to clipboard!');
                 }
+            });
+
+            // Keyboard navigation — only bind once
+            if (!galleryNavBound) {
+                galleryNavBound = true;
+                document.addEventListener('keydown', (e) => {
+                    if (!document.getElementById('galleryCurrentImg')) return;
+                    const lb = document.getElementById('lightbox');
+                    if (lb && lb.classList.contains('active')) return; // lightbox handles its own keys
+                    if (e.key === 'ArrowLeft')  { galleryGoPrev(); }
+                    if (e.key === 'ArrowRight') { galleryGoNext(); }
+                });
             }
         }
 
@@ -5693,9 +5736,9 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 // If gallery page, build the dedicated slideshow
                 if (section === 'gallery') {
                     setTimeout(() => {
-                        parseGalleryIndexFromHash();
+                        parseGalleryIndexFromHash(); // must run before buildGalleryPage
                         buildGalleryPage();
-                    }, 100);
+                    }, 150);
                 }
                 
                 updateActiveNavLink(section);
@@ -5744,7 +5787,7 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                     setTimeout(() => {
                         parseGalleryIndexFromHash();
                         buildGalleryPage();
-                    }, 100);
+                    }, 150);
                 }
                 return;
             }
@@ -5927,8 +5970,9 @@ Asylum seekers and refugees who are ESOL students sometimes qualify for a free b
                 history.replaceState({ section: 'home' }, '', window.location.pathname);
             }
             
-            // If gallery, ensure we preserve the img parameter by loading with preserve flag
+            // If gallery, parse the img parameter from the hash NOW (before content loads)
             if (initialSection === 'gallery') {
+                parseGalleryIndexFromHash(); // set galleryCurrentIndex from URL before render
                 loadContent('gallery', true);
             } else {
                 loadContent(initialSection);
