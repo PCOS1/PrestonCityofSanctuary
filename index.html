@@ -95,6 +95,7 @@
             --success-color: #2a9d8f;
             --gradient-primary: linear-gradient(135deg, #A0125A 0%, #7a0d44 100%);
             --gradient-secondary: linear-gradient(135deg, #2c5aa0 0%, #4a7bc8 100%);
+            --gold-gradient: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
         }
 
         body {
@@ -834,6 +835,167 @@
             display: none;
         }
 
+        /* ===== ANNIVERSARY PAGE STYLES ===== */
+        .anniversary-badge {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: #7a0d44;
+            font-weight: 700;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(247, 151, 30, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .choir-intro {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 25px 0 30px;
+            border-left: 6px solid var(--accent-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .choir-tag {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .choir-intro h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-size: 1.6rem;
+        }
+
+        .choir-intro p {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .anthem-container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 30px 25px;
+            margin: 30px 0;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+            border-left: 6px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .anthem-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        .anthem-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .anthem-subtitle {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .anthem-lyrics {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            line-height: 2;
+            color: #2c2c2c;
+            background: #fafafa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .anthem-lyrics .section-label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 18px;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 4px;
+        }
+
+        .anthem-lyrics .section-label:first-of-type {
+            margin-top: 0;
+        }
+
+        .audio-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+            background: #f5f5f5;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 5px;
+        }
+
+        .audio-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .audio-wrapper audio {
+            flex: 1;
+            min-width: 200px;
+            max-width: 400px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .audio-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(160, 18, 90, 0.25);
+        }
+
+        .audio-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(160, 18, 90, 0.35);
+            color: white;
+            text-decoration: none;
+        }
+
         /* MOBILE RESPONSIVE FIXES */
         @media (max-width: 1200px) {
             .nav-link {
@@ -918,6 +1080,22 @@
             .top-brand-text.short-text {
                 display: inline-block;
             }
+
+            .anthem-title {
+                font-size: 1.4rem;
+            }
+            .anthem-lyrics {
+                font-size: 0.95rem;
+                padding: 16px 18px;
+                max-height: 400px;
+            }
+            .audio-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .audio-wrapper audio {
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -986,6 +1164,34 @@
                 height: 45px;
                 font-size: 1.1rem;
             }
+
+            .anthem-container {
+                padding: 20px 16px 18px;
+            }
+            .anthem-title {
+                font-size: 1.2rem;
+            }
+            .anthem-lyrics {
+                font-size: 0.9rem;
+                padding: 14px 14px;
+                max-height: 350px;
+            }
+            .anniversary-badge {
+                font-size: 1rem;
+                padding: 6px 18px;
+            }
+            .choir-intro {
+                padding: 20px 16px;
+            }
+            .choir-intro h3 {
+                font-size: 1.3rem;
+            }
+            .choir-intro p {
+                font-size: 0.95rem;
+            }
+            .audio-wrapper {
+                padding: 12px 14px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1011,6 +1217,16 @@
             }
             .top-brand-text.short-text {
                 font-size: 0.9rem;
+            }
+
+            .anthem-title {
+                font-size: 1.1rem;
+            }
+            .anthem-lyrics {
+                font-size: 0.85rem;
+                padding: 12px 12px;
+                max-height: 300px;
+                line-height: 1.8;
             }
         }
 
@@ -1582,7 +1798,7 @@
             transition: background-color 0.3s ease;
         }
 
-        /* ===== LIGHTBOX STYLES (ADDED) ===== */
+        /* ===== LIGHTBOX STYLES ===== */
         .lightbox {
             display: none;
             position: fixed;
@@ -1673,7 +1889,7 @@
             }
         }
 
-        /* ===== MARQUEE GALLERY STYLES (ADDED) ===== */
+        /* ===== MARQUEE GALLERY STYLES ===== */
         @keyframes marquee {
             0% {
                 transform: translateX(0);
@@ -1846,6 +2062,19 @@
         .copy-url-btn:hover {
             background: var(--dark-color);
         }
+
+        /* Button for 10th Anniversary in dropdown */
+        .anniversary-nav-icon {
+            color: #f7971e;
+            margin-right: 6px;
+        }
+
+        .dropdown-item .anniversary-nav-icon {
+            color: #f7971e;
+        }
+        .dropdown-item:hover .anniversary-nav-icon {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -1935,7 +2164,7 @@
                         <a class="nav-link active" href="#home" id="home-link">Home</a>
                     </li>
 
-                    <!-- About Us with Experts Group subpage -->
+                    <!-- About Us with Experts Group subpage + 10th Anniversary -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="about-main-link">
                             About Us
@@ -1946,6 +2175,10 @@
                             <li><a class="dropdown-item" href="#who-we-are" id="who-we-are-link">Who We Are</a></li>
                             <li><a class="dropdown-item" href="#experts-group" id="experts-group-link">Experts Group</a></li>
                             <li><a class="dropdown-item" href="#policies" id="policies-link">Policies & Documents</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#10th-anniversary" id="10th-anniversary-link">
+                                    <i class="fas fa-star anniversary-nav-icon"></i> 10th Anniversary
+                                </a></li>
                         </ul>
                     </li>
 
@@ -1970,7 +2203,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#learning-english" id="learning-english-link">Learning English (ESOL)</a></li>
-                            <!-- NEW: Translation & interpreting subpage -->
                             <li><a class="dropdown-item" href="#translation-interpreting" id="translation-interpreting-link">Translation & interpreting</a></li>
                             <li><a class="dropdown-item" href="#education-schools" id="education-schools-link">Schools</a></li>
                             <li><a class="dropdown-item" href="#libraries" id="libraries-link">Libraries</a></li>
@@ -2044,7 +2276,7 @@
         <!-- Content will be loaded dynamically here -->
     </div>
 
-    <!-- Lightbox Overlay (ADDED) -->
+    <!-- Lightbox Overlay -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
         <span class="lightbox-prev">&#10094;</span>
@@ -2124,6 +2356,7 @@
                                 <li><a href="#home" class="footer-nav-link">Home</a></li>
                                 <li><a href="#about" class="footer-nav-link">About Us</a></li>
                                 <li><a href="#experts-group" class="footer-nav-link">Experts Group</a></li>
+                                <li><a href="#10th-anniversary" class="footer-nav-link">10th Anniversary</a></li>
                                 <li><a href="https://cityofsanctuary.org/" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">
                                         City of Sanctuary UK</a></li>
                                 <li><a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" rel="noopener noreferrer" style="color: #a8dadc !important; text-decoration: underline !important; font-weight: 600 !important;">Facebook page</a></li>
@@ -2592,7 +2825,6 @@
                         <p class="page-subtitle">ESOL courses and language learning opportunities</p>
                     </div>
                 `,
-            // NEW: translation page title
             'translation-interpreting': `
                     <div class="container">
                         <h1 class="page-title">Translation & interpreting services</h1>
@@ -2712,6 +2944,13 @@
                         <h1 class="page-title">Get In Touch</h1>
                         <p class="page-subtitle">Send a message via our contact form</p>
                     </div>
+                `,
+            // NEW: 10th Anniversary page title
+            '10th-anniversary': `
+                    <div class="container">
+                        <h1 class="page-title">10 Years of Sanctuary</h1>
+                        <p class="page-subtitle">Celebrating a decade of welcome, resilience and community — with the New Roots Choir</p>
+                    </div>
                 `
         };
 
@@ -2732,7 +2971,7 @@
                                     </p>
                                 </div>
                                 
-                                <!-- STATEMENT OF SUPPORT AND SOLIDARITY (ADDED) -->
+                                <!-- STATEMENT OF SUPPORT AND SOLIDARITY -->
                                 <div style="background: #fff9e6; border-left: 5px solid var(--accent-color); padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                                     <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.5rem;">Statement of Support and Solidarity from Preston City of Sanctuary</h3>
                                     <p>As we approach Refugee Week (15-20th June 2026) and in light of the events that have taken place in various parts of the UK over recent days, we want to reassure those seeking sanctuary in our city that Preston City of Sanctuary stands in unwavering solidarity with refugees, asylum seekers, and people seeking sanctuary who call Preston home.</p>
@@ -2777,6 +3016,9 @@
                                 <div class="mt-4">
                                     <a href="#about" onclick="loadContent('about'); return false;" class="btn btn-primary-custom me-3">Learn More About Us</a>
                                     <a href="#PlannedEvents" onclick="loadContent('PlannedEvents'); return false;" class="btn btn-outline-primary">View Upcoming Events</a>
+                                    <a href="#10th-anniversary" onclick="loadContent('10th-anniversary'); return false;" class="btn btn-outline-primary" style="border-color: #f7971e; color: #f7971e;">
+                                        <i class="fas fa-star me-1" style="color: #f7971e;"></i> 10th Anniversary
+                                    </a>
                                 </div>
                             </section>
                         </div>
@@ -3025,6 +3267,9 @@
                                 <div class="mt-4">
                                     <a href="#about" onclick="loadContent('about'); return false;" class="btn btn-primary-custom me-3">بیشتر درباره ما بدانید</a>
                                     <a href="#PlannedEvents" onclick="loadContent('PlannedEvents'); return false;" class="btn btn-outline-primary">مشاهده رویدادهای پیش‌رو</a>
+                                    <a href="#10th-anniversary" onclick="loadContent('10th-anniversary'); return false;" class="btn btn-outline-primary" style="border-color: #f7971e; color: #f7971e;">
+                                        <i class="fas fa-star me-1" style="color: #f7971e;"></i> دهمین سالگرد
+                                    </a>
                                 </div>
                             </section>
                         </div>
@@ -3252,6 +3497,9 @@
                                 <div class="mt-4">
                                     <a href="#about" onclick="loadContent('about'); return false;" class="btn btn-primary-custom me-3">تعرف علينا أكثر</a>
                                     <a href="#PlannedEvents" onclick="loadContent('PlannedEvents'); return false;" class="btn btn-outline-primary">عرض الفعاليات القادمة</a>
+                                    <a href="#10th-anniversary" onclick="loadContent('10th-anniversary'); return false;" class="btn btn-outline-primary" style="border-color: #f7971e; color: #f7971e;">
+                                        <i class="fas fa-star me-1" style="color: #f7971e;"></i> الذكرى العاشرة
+                                    </a>
                                 </div>
                             </section>
                         </div>
@@ -3954,7 +4202,7 @@
                     </div>
                 `,
 
-            // ============ COVID MEMORIES PAGE (Fully updated with new content) ============
+            // ============ COVID MEMORIES PAGE ============
             'Pandemic-Memories': `
                     <div class="two-column-layout" style="display: flex; flex-wrap: wrap;">
                         <div class="content-left-column">
@@ -4469,11 +4717,11 @@
                                         <i class="fas fa-language me-2"></i> Help with translation and interpreting services
                                     </h5>
                                     
-                                    <p>If you don’t feel confident speaking English it can feel frustrating trying to communicate with authorities. You may need to speak (or write to) a school, a college, a doctor or other people in the NHS, the Home Office, the council or a housing association. While some public organisations have funding for translators and interpreters, not all do. Often they will use an interpreter working over the phone, or a video link such as Zoom.</p>
+                                    <p>If you don't feel confident speaking English it can feel frustrating trying to communicate with authorities. You may need to speak (or write to) a school, a college, a doctor or other people in the NHS, the Home Office, the council or a housing association. While some public organisations have funding for translators and interpreters, not all do. Often they will use an interpreter working over the phone, or a video link such as Zoom.</p>
 
                                     <p>If you need to attend a meeting in person, if you have a friend or family member who can speak English then you should ask if they can go with you.</p>
 
-                                    <p>If you don’t feel like you will be able to express yourself well in English you can ask an organisation if they can provide an interpreter for your first language. Also you can ask a local organisation like us at Preston City of Sanctuary or the Red Cross for support. We will try to explain anything that you are struggling to understand and we will be able to signpost you to someone who can help.</p>
+                                    <p>If you don't feel like you will be able to express yourself well in English you can ask an organisation if they can provide an interpreter for your first language. Also you can ask a local organisation like us at Preston City of Sanctuary or the Red Cross for support. We will try to explain anything that you are struggling to understand and we will be able to signpost you to someone who can help.</p>
 
                                     <div class="warning-box" style="margin-top: 20px;">
                                         <p><strong>We know that a lot of people try using Google Translate on a phone or computer. But you need to be careful.</strong> Some of the translations are not very accurate. We would not recommend this for official documents.</p>
@@ -4482,7 +4730,7 @@
                                     <p>The Home Office may suggest that your personal identity documents need to be translated. It is important to double check this requirement with the home office or your immigration solicitor. Translation may not be necessary and a translation could cost you money.</p>
 
                                     <div class="info-box">
-                                        <p><i class="fas fa-hand-holding-heart me-2"></i> If you have recently moved to Preston and don’t know the area well, please contact us and we will try to help.</p>
+                                        <p><i class="fas fa-hand-holding-heart me-2"></i> If you have recently moved to Preston and don't know the area well, please contact us and we will try to help.</p>
                                     </div>
 
                                     <p style="margin-top: 25px;"><strong>Contact us:</strong> <a href="mailto:prestoncityofsanctuary@gmail.com">prestoncityofsanctuary@gmail.com</a></p>
@@ -5298,6 +5546,203 @@
                         </div>
                         ${facebookSidebarHTML}
                     </div>
+                `,
+
+            // ============ 10TH ANNIVERSARY PAGE ============
+            '10th-anniversary': `
+                    <div class="two-column-layout" style="display: flex; flex-wrap: wrap;">
+                        <div class="content-left-column">
+                            <section class="dynamic-content">
+                                <div style="margin-bottom: 30px;">
+                                    <span class="anniversary-badge"><i class="fas fa-star me-2"></i> 10 Years of Sanctuary</span>
+                                    <p style="font-size: 1.15rem; line-height: 1.8; color: #444;">
+                                        To mark the <strong>10th anniversary of Preston City of Sanctuary</strong>, we are proud to present 
+                                        <strong>"We Are All Prestonians Now"</strong> — a special magazine celebrating a decade of welcome, 
+                                        resilience and community. As part of this celebration, we are also delighted to introduce 
+                                        the <strong>New Roots Choir</strong>, a new community choir for sanctuary seekers and friends.
+                                    </p>
+                                    <p style="font-size: 1.05rem; color: #555;">
+                                        Below you will find the two official anthems created for this milestone, with lyrics and audio 
+                                        recordings. Sing along, share them, and celebrate with us.
+                                    </p>
+                                </div>
+
+                                <!-- New Roots Choir Introduction -->
+                                <div class="choir-intro">
+                                    <span class="choir-tag"><i class="fas fa-music me-1"></i> NEW</span>
+                                    <h3>New Roots Choir</h3>
+                                    <p>
+                                        <strong>New Roots Choir</strong> is a newly formed community choir for sanctuary seekers, refugees, 
+                                        asylum seekers and all who believe in the power of song to build bridges. Meeting weekly in Preston, 
+                                        the choir brings together voices from many lands to share music, learn together and create a 
+                                        sense of belonging through harmony.
+                                    </p>
+                                    <p>
+                                        Everyone is welcome — no experience needed, just a willingness to sing from the heart. 
+                                        The choir is a place to make new friends, build confidence, and celebrate the richness of our 
+                                        diverse community.
+                                    </p>
+                                    <p style="margin-top: 12px;">
+                                        <i class="fas fa-info-circle me-2" style="color: var(--primary-color);"></i>
+                                        <strong>Interested in joining?</strong> Contact us at 
+                                        <a href="mailto:prestoncityofsanctuary@gmail.com">prestoncityofsanctuary@gmail.com</a>
+                                    </p>
+                                </div>
+
+                                <!-- Anthem 1 -->
+                                <div class="anthem-container">
+                                    <div class="anthem-title">We Are All Prestonians Now</div>
+                                    <div class="anthem-subtitle">Preston City of Sanctuary 10th Anniversary Anthem</div>
+                                    <div class="anthem-lyrics">
+                                        <span class="section-label">VERSE 1</span>
+                                        From every corner of the world you came
+                                        Through winding roads and wind and rain
+                                        You walked through doors left open wide
+                                        Preston said, "Come on inside"
+
+                                        A city built on welcome here
+                                        Where every voice is free to share
+                                        We stand together, hand in hand
+                                        One heart, one hope, one common land
+
+                                        <span class="section-label">CHORUS</span>
+                                        We are all Prestonians now
+                                        We found our place, we found our vow
+                                        From every nation, every shore
+                                        Preston opens every door
+                                        We are all Prestonians now
+
+                                        <span class="section-label">VERSE 2</span>
+                                        No need to walk these streets alone
+                                        In Preston every soul finds home
+                                        We build a city, fair and free
+                                        A place of sanctuary
+
+                                        United in our will to say
+                                        That everyone is welcome here to stay
+                                        We share our tables, share our song
+                                        In Preston, everyone belongs
+
+                                        <span class="section-label">CHORUS</span>
+                                        We are all Prestonians now
+                                        We found our place, we found our vow
+                                        From every nation, every shore
+                                        Preston opens every door
+                                        We are all Prestonians now
+
+                                        <span class="section-label">BRIDGE</span>
+                                        <em>(Slower, heartfelt)</em>
+                                        We are people, we are neighbours
+                                        We are dreamers, we are makers
+                                        Side by side we build this city
+                                        Open, fair and full of beauty
+
+                                        Dialogue and collaboration
+                                        Platform for every nation
+                                        This is Preston's greatest pride —
+                                        Nobody is left outside
+
+                                        <span class="section-label">FINAL CHORUS</span>
+                                        <em>(Full choir, powerful)</em>
+                                        We are all Prestonians now
+                                        We found our place, we found our vow
+                                        From every nation, every shore
+                                        Preston opens every door
+
+                                        A culture built on welcome here
+                                        Ten years strong and still we're here
+                                        We are sanctuary, we are free —
+                                        <strong>We Are All Prestonians Now</strong>
+
+                                        <span class="section-label">OUTRO</span>
+                                        <em>(Gentle, fading)</em>
+                                        We are all Prestonians now
+                                        We are all Prestonians now
+                                        Preston — our city, our home
+                                        No one walks these streets alone
+                                    </div>
+                                    <div class="audio-wrapper">
+                                        <span class="audio-label"><i class="fas fa-headphones me-2"></i>Listen:</span>
+                                        <audio controls preload="none">
+                                            <source src="WeAreAllPrestoniansNow.mp3" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                        <a href="WeAreAllPrestoniansNow.mp3" download class="audio-download">
+                                            <i class="fas fa-download"></i> Download
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Anthem 2 -->
+                                <div class="anthem-container" style="border-left-color: var(--accent-color);">
+                                    <div class="anthem-title">New Roots Choir</div>
+                                    <div class="anthem-subtitle">Anthem of the New Roots Choir — Preston City of Sanctuary</div>
+                                    <div class="anthem-lyrics">
+                                        <span class="section-label">VERSE 1</span>
+                                        From many lands we gather here
+                                        New Roots Choir, our voices clear
+                                        From many lands we gather here
+                                        New Roots Choir, our voices clear
+
+                                        Side by side we learn and grow
+                                        Sharing songs that all can know
+                                        Every voice can play a part
+                                        Singing from the heart
+
+                                        <span class="section-label">CHORUS</span>
+                                        New Roots Choir, sing out strong
+                                        Join together in one song
+                                        From many lands we gather here
+                                        New Roots Choir, our voices clear
+
+                                        <span class="section-label">VERSE 2</span>
+                                        New friends come from near and far
+                                        Shining bright just like a star
+                                        Different paths, one harmony
+                                        One big family
+
+                                        <span class="section-label">CHORUS</span>
+                                        New Roots Choir, sing out strong
+                                        Join together in one song
+                                        From many lands we gather here
+                                        New Roots Choir, our voices clear
+
+                                        <span class="section-label">OUTRO</span>
+                                        New Roots Choir, sing out strong
+                                        Join together in one song
+                                        New Roots Choir, sing out strong
+                                        <em>(Repeat)</em>
+                                    </div>
+                                    <div class="audio-wrapper">
+                                        <span class="audio-label"><i class="fas fa-headphones me-2"></i>Listen:</span>
+                                        <audio controls preload="none">
+                                            <source src="newrootschoir.mp3" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                        <a href="newrootschoir.mp3" download class="audio-download">
+                                            <i class="fas fa-download"></i> Download
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div style="background: #f8f9fa; border-radius: 12px; padding: 25px; text-align: center; border: 1px solid #e0e0e0; margin-top: 10px;">
+                                    <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                                        <i class="fas fa-heart" style="color: var(--primary-color);"></i>
+                                        Join us in celebrating <strong>10 years of sanctuary</strong> in Preston.
+                                    </p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+                                        <a href="https://www.facebook.com/people/Preston-City-of-Sanctuary/100067197351909/" target="_blank" class="btn btn-primary-custom" style="background: #1877f2;">
+                                            <i class="fab fa-facebook me-2"></i> Share on Facebook
+                                        </a>
+                                        <a href="mailto:prestoncityofsanctuary@gmail.com?subject=10th%20Anniversary%20-%20We%20Are%20All%20Prestonians%20Now" class="btn btn-primary-custom">
+                                            <i class="fas fa-envelope me-2"></i> Get in Touch
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        ${facebookSidebarHTML}
+                    </div>
                 `
         };
 
@@ -5509,6 +5954,14 @@
                     'events', 'community', 'moments', 'refugee week', 'covid', 'memories', 'album', 'photographs'
                 ],
                 content: 'Photo gallery with slideshow and shareable image URLs. Contains images from Refugee Week, community events, Covid memories project, ESOL classes, and more.'
+            },
+            // NEW: 10th Anniversary search entry
+            { id: '10th-anniversary', title: '10th Anniversary', keywords: ['10th', 'anniversary', 'birthday',
+                    'celebration', 'anthem', 'choir', 'new roots choir', 'we are all prestonians now', 'magazine',
+                    'decade', 'welcome', 'resilience', 'community', 'songs', 'lyrics', 'audio', 'download',
+                    'prestonians', 'music', 'singing'
+                ],
+                content: '10th Anniversary of Preston City of Sanctuary. We Are All Prestonians Now anthem with lyrics and audio. New Roots Choir community choir for sanctuary seekers. Celebrate a decade of welcome, resilience and community.'
             }
         ];
 
@@ -6044,7 +6497,9 @@
             en: {
                 home: "Home",
                 about: "About Us",
-                about_sub: ["About Us", "What We Do", "Who We Are", "Experts Group", "Policies & Documents"],
+                about_sub: ["About Us", "What We Do", "Who We Are", "Experts Group", "Policies & Documents",
+                    "10th Anniversary"
+                ],
                 local: "Local Support",
                 local_sub: ["Red Cross", "Kind Communities", "Muslim Forum", "Sports & Leisure", "Help In Preston"],
                 learn: "Learning English",
@@ -6063,7 +6518,9 @@
             fa: {
                 home: "خانه",
                 about: "درباره ما",
-                about_sub: ["درباره ما", "کارهای ما", "ما که هستیم", "گروه متخصصان", "اسناد و سیاست‌ها"],
+                about_sub: ["درباره ما", "کارهای ما", "ما که هستیم", "گروه متخصصان", "اسناد و سیاست‌ها",
+                    "دهمین سالگرد"
+                ],
                 local: "حمایت محلی",
                 local_sub: ["صلیب سرخ", "کاميونيتي‌های مهربان", "انجمن مسلمانان", "ورزش و اوقات فراغت",
                     "راهنما در پرستون"
@@ -6084,7 +6541,9 @@
             ar: {
                 home: "الرئيسية",
                 about: "معلومات عنا",
-                about_sub: ["معلومات عنا", "ماذا نفعل", "من نحن", "مجموعة الخبراء", "السياسات والوثائق"],
+                about_sub: ["معلومات عنا", "ماذا نفعل", "من نحن", "مجموعة الخبراء", "السياسات والوثائق",
+                    "الذكرى العاشرة"
+                ],
                 local: "الدعم المحلي",
                 local_sub: ["الصليب الأحمر", "المجتمعات اللطيفة", "المنتدى الإسلامي", "الرياضة والترفيه",
                     "مساعدة في بريستون"
@@ -6252,6 +6711,7 @@
             handleInitialPageLoad();
 
             console.log('Page loaded successfully - Gallery with shareable URLs ready.');
+            console.log('10th Anniversary page added with anthems and audio players.');
         });
     </script>
 </body>
